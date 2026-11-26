@@ -1,0 +1,14 @@
+{
+  "participants": [],
+  "technical": { "mobilePerformance": null, "accessibility": null, "lcpSeconds": null, "reportPath": null },
+  "participantExample": {
+    "id": "anonymous-person-1",
+    "unfamiliarWithSite": true,
+    "seconds": null,
+    "primaryRole": "Their answer, verbatim",
+    "projectAndContribution": "Their answer, verbatim",
+    "foundContact": false,
+    "signatureExplanation": "Their explanation after exploration",
+    "observedOn": "YYYY-MM-DD"
+  }
+}
