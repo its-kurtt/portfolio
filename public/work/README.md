@@ -19,10 +19,6 @@ Origin supplied by Kurt: [Modeling folder](https://drive.google.com/drive/folder
 
 No in-game object names are inferred from filenames. Kurt supplied these as examples of his Shards work.
 
-## CS Expo 2026
-
-[Official public trailer](https://www.facebook.com/reel/1686176419803462), verified 2026-11-25. Posted by CS EXPO 2026, titled in its caption “CS Expo 2026: NEOSTALGIA”; caption explicitly credits “Video edited by: Kurt Deslate”. The original supplied share URL redirects here. The portfolio offers a click-to-load official Facebook embed and a direct fallback link. No third-party downloader, copied poster, or invented editing software is used. The 4,000+ views figure comes from Kurt's resume and is not presented as a live counter.
-
 ## ACM
 
 [FEU Tech ACM page](https://www.facebook.com/feutechACM), supplied by Kurt. Kurt will manually select and add the strongest credited pieces. No artwork has been scraped, inferred, or substituted. The launch gate remains held until selected genuine media and individual credits are added.

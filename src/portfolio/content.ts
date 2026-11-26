@@ -74,7 +74,7 @@ export const works: Work[] = [
     description:
       'Designed and built solo in React and TypeScript as a structured, interactive web archive for the Jedi Order community in the Roblox game The Known Galaxy.',
     highlights: [
-      'Rebuilt the experience from the ground up to look cohesive, neat, and easy to navigate, replacing the original Notion wiki that felt dense and text-heavy like a standard Wikipedia page.',
+      'Designed the experience from the ground up to look cohesive, neat, and easy to navigate, reimagining the original Notion wiki as a dedicated web hub rather than a dense, text-heavy page.',
     ],
     outcome: 'Interactive React archive',
     tools: ['React', 'TypeScript', 'CSS'],
