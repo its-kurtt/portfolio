@@ -1,0 +1,12 @@
+node_modules
+dist
+tmp
+.impeccable
+public
+src/prototype
+AGENTS.md
+PLAN.md
+CURRENTSTATE.md
+DESIGN.md
+PRODUCT.md
+GLOSSARY.md

@@ -1,0 +1,40 @@
+{
+  "name": "kurt-portfolio",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "prototype": "vite --host 127.0.0.1 --open /prototype",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b --pretty false",
+    "preview": "vite preview --host 127.0.0.1",
+    "lint": "eslint .",
+    "test": "node --test scripts/portfolio.test.mjs",
+    "check:launch": "node scripts/check-launch.mjs",
+    "format": "prettier --write src/portfolio src/main.tsx scripts/*.mjs eslint.config.mjs README.md",
+    "format:check": "prettier --check src/portfolio src/main.tsx scripts/*.mjs eslint.config.mjs README.md"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.8.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/react": "^19.3.1",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.187.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "eslint": "^10.15.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1",
+    "tailwindcss": "^4.3.5",
+    "typescript": "~6.0.0",
+    "typescript-eslint": "^8.74.0",
+    "vite": "^8.3.8"
+  }
+}

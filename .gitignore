@@ -1,0 +1,22 @@
+# Dependencies and generated builds
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Secrets (templates may be versioned)
+.env
+.env.*
+!.env.example
+
+# Temporary review output
+/tmp/
+/output/review/
+/test-results/
+/playwright-report/
+/release-review.local.json
+
+# Local system files and logs
+.DS_Store
+Thumbs.db
+*.log
