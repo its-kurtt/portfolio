@@ -1,0 +1,124 @@
+{
+  "the-known-galaxy": {
+    "route": "/work/the-known-galaxy",
+    "contribution": "Front-end development and web design",
+    "media": [
+      "/work/known-galaxy/thumbnail-collage.jpg",
+      "/work/known-galaxy/live-home.jpg",
+      "/work/known-galaxy/live-nav-desktop.jpg",
+      "/work/known-galaxy/live-councils.jpg",
+      "/work/known-galaxy/live-council-knowledge.jpg",
+      "/work/known-galaxy/live-council-mission.jpg",
+      "/work/known-galaxy/live-council-specializations.jpg",
+      "/work/known-galaxy/live-council-organizations.jpg",
+      "/work/known-galaxy/live-council-leadership.jpg",
+      "/work/known-galaxy/live-trainings.jpg",
+      "/work/known-galaxy/live-trials.jpg",
+      "/work/known-galaxy/live-holonet.jpg",
+      "/work/known-galaxy/live-holonet-transmission.jpg",
+      "/work/known-galaxy/live-spintir-article.jpg",
+      "/work/known-galaxy/live-spintir-footer.jpg"
+    ],
+    "status": "verified-local"
+  },
+  "shards-of-the-past": {
+    "route": "/work/shards-of-the-past",
+    "contribution": "3D game asset modeling",
+    "media": [
+      "/work/shards/thumbnail-collage.jpg",
+      "/work/shards/render-01.jpg",
+      "/work/shards/render-02.jpg",
+      "/work/shards/render-03.jpg",
+      "/work/shards/render-04.jpg",
+      "/work/shards/render-05.jpg",
+      "/work/shards/render-06.jpg",
+      "/work/shards/render-07.jpg",
+      "/work/shards/render-08.jpg",
+      "/work/shards/render-09.jpg",
+      "/work/shards/render-10.jpg",
+      "/work/shards/render-11.jpg",
+      "/work/shards/render-12.jpg",
+      "/work/shards/render-13.jpg",
+      "/work/shards/render-14.jpg",
+      "/work/shards/render-15.jpg",
+      "/work/shards/render-16.jpg",
+      "/work/shards/render-17.jpg",
+      "/work/shards/render-18.jpg",
+      "/work/shards/render-19.jpg",
+      "/work/shards/render-20.jpg",
+      "/work/shards/render-21.jpg",
+      "/work/shards/render-22.jpg",
+      "/work/shards/render-23.jpg",
+      "/work/shards/render-24.jpg",
+      "/work/shards/render-25.jpg",
+      "/work/shards/render-26.jpg",
+      "/work/shards/render-27.jpg",
+      "/work/shards/render-28.jpg",
+      "/work/shards/render-29.jpg",
+      "/work/shards/render-30.jpg",
+      "/work/shards/render-31.jpg",
+      "/work/shards/render-32.jpg"
+    ],
+    "status": "verified-local"
+  },
+  "cs-expo-2026": {
+    "route": "/work/cs-expo-2026",
+    "contribution": "Official trailer editing and animation; publicly credited in the post",
+    "media": [
+      "/work/videos/cs-expo-2026.mp4",
+      "https://www.facebook.com/reel/1686176419803462"
+    ],
+    "status": "verified-local",
+    "verifiedOn": "2026-11-26"
+  },
+  "cs-night-2026": {
+    "route": "/work/cs-night-2026",
+    "contribution": "3D and animation trailer for CS Night 2026",
+    "media": [
+      "/work/videos/cs-night-2026.mp4",
+      "https://www.facebook.com/share/v/19rwB6Sa4S/"
+    ],
+    "status": "verified-local",
+    "verifiedOn": "2026-11-26"
+  },
+  "acm-elysium-18": {
+    "route": "/work/acm-elysium-18",
+    "contribution": "3D and animation retrospective for 18 years of FEU Tech ACM leading into Elysium Night",
+    "media": [
+      "/work/videos/acm-elysium.mp4",
+      "https://www.facebook.com/share/v/19xdASjj6q/"
+    ],
+    "status": "verified-local",
+    "verifiedOn": "2026-11-26"
+  },
+  "acm-heartwired": {
+    "route": "/work/acm-heartwired",
+    "contribution": "3D and animation teaser trailer for ACM Heartwired",
+    "media": [
+      "/work/videos/acm-heartwired.mp4",
+      "https://www.facebook.com/share/v/1CcfkV87nW/"
+    ],
+    "status": "verified-local",
+    "verifiedOn": "2026-11-26"
+  },
+  "fit-acm-25-26": {
+    "route": "/work/fit-acm-25-26",
+    "contribution": "3D and animation school year 2025-2026 retrospective for FEU Tech ACM",
+    "media": [
+      "/work/videos/fit-acm-25-26.mp4",
+      "https://www.facebook.com/share/v/1E5vHC9i6N/"
+    ],
+    "status": "verified-local",
+    "verifiedOn": "2026-11-26"
+  },
+  "acm-revival-x": {
+    "route": "/work/acm-revival-x",
+    "contribution": "3D and animation teaser trailer for ACM Revival X",
+    "media": [
+      "/work/videos/revival-x.mp4",
+      "https://www.facebook.com/share/v/1A79Ufg7db/"
+    ],
+    "status": "verified-local",
+    "verifiedOn": "2026-11-26"
+  }
+}
