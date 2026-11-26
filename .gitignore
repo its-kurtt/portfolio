@@ -17,6 +17,7 @@ coverage/
 /release-review.local.json
 
 # Local system files and logs
+.prettierignore
 .DS_Store
 Thumbs.db
 *.log
