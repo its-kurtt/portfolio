@@ -425,6 +425,22 @@ body:has(.studio-shell:not(.is-parked)) {
   padding: 0 5% 28px;
 }
 
+.hud-intro::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: clamp(220px, 38vh, 360px);
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(8, 9, 13, 0.94) 0%,
+    rgba(8, 9, 13, 0.72) 34%,
+    rgba(8, 9, 13, 0.26) 66%,
+    rgba(8, 9, 13, 0) 100%
+  );
+}
+
 .intro-emblem-fallback {
   position: absolute;
   left: 50%;
@@ -456,6 +472,7 @@ body:has(.studio-shell:not(.is-parked)) {
   letter-spacing: 0.22em;
   text-indent: 0.22em;
   color: var(--white);
+  text-shadow: 0 4px 24px rgba(8, 9, 13, 0.82);
   margin: 0 0 10px;
   animation: support-rise 460ms var(--ease-out) 40ms both;
 }
@@ -464,7 +481,8 @@ body:has(.studio-shell:not(.is-parked)) {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.24em;
-  color: rgba(245, 243, 238, 0.76);
+  color: rgba(245, 243, 238, 0.84);
+  text-shadow: 0 2px 14px rgba(8, 9, 13, 0.85);
   margin: 0 0 18px;
   animation: support-rise 460ms var(--ease-out) 80ms both;
 }
@@ -2271,6 +2289,18 @@ body:has(.studio-shell:not(.is-parked)) {
     -webkit-backdrop-filter: blur(4px);
     backdrop-filter: blur(4px);
     cursor: default;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 220ms var(--ease-out),
+      visibility 220ms linear;
+  }
+
+  .mobile-nav-shell.is-open .mobile-nav-backdrop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .mobile-nav-pill {
@@ -2602,6 +2632,7 @@ body:has(.studio-shell:not(.is-parked)) {
   .intro-name-line,
   .intro-short-bio,
   .intro-cta-cluster,
+  .mobile-nav-backdrop,
   .mobile-nav-popover,
   .mobile-nav-burger span,
   .mobile-nav-brand,

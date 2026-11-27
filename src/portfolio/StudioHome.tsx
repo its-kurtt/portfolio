@@ -231,15 +231,14 @@ export function StudioTopHeader({
 
       {/* Mobile-only centered floating capsule + origin-aware glass popover */}
       <div className={`mobile-nav-shell ${mobileMenuOpen ? 'is-open' : ''}`}>
-        {mobileMenuOpen && (
-          <button
-            type="button"
-            className="mobile-nav-backdrop"
-            aria-label="Close navigation menu"
-            tabIndex={-1}
-            onClick={() => setMobileMenuOpen(false)}
-          />
-        )}
+        <button
+          type="button"
+          className="mobile-nav-backdrop"
+          aria-label="Close navigation menu"
+          aria-hidden={!mobileMenuOpen}
+          tabIndex={-1}
+          onClick={() => setMobileMenuOpen(false)}
+        />
 
         <div className="mobile-nav-pill">
           <a
