@@ -146,6 +146,7 @@ export function StudioTopHeader({
   onSelectRoom?: (room: StudioRoom) => void
 }) {
   const [clock, setClock] = useState(() => formatManilaTime(new Date()))
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const id = window.setInterval(() => {
@@ -154,6 +155,21 @@ export function StudioTopHeader({
     return () => window.clearInterval(id)
   }, [])
 
+  useEffect(() => {
+    setMobileMenuOpen(false)
+  }, [currentRoom])
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return
+    const onKeyDown = (event: globalThis.KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMobileMenuOpen(false)
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [mobileMenuOpen])
+
   const navItems: { room: StudioRoom; path: string; label: string }[] = [
     { room: 'intro', path: '/', label: 'INTRO' },
     { room: 'about', path: '/about', label: 'ABOUT' },
@@ -161,6 +177,9 @@ export function StudioTopHeader({
     { room: 'experience', path: '/experience', label: 'EXPERIENCE' },
     { room: 'contact', path: '/contact', label: 'CONTACT' },
   ]
+
+  const currentItem =
+    navItems.find((item) => item.room === currentRoom) ?? navItems[0]
 
   return (
     <header className="studio-hud-top">
@@ -207,6 +226,95 @@ export function StudioTopHeader({
           </span>
         ))}
       </nav>
+
+      {/* Mobile-only centered floating capsule + origin-aware glass popover */}
+      <div className={`mobile-nav-shell ${mobileMenuOpen ? 'is-open' : ''}`}>
+        {mobileMenuOpen && (
+          <button
+            type="button"
+            className="mobile-nav-backdrop"
+            aria-label="Close navigation menu"
+            tabIndex={-1}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+
+        <div className="mobile-nav-pill">
+          <a
+            href="/"
+            data-route={onSelectRoom ? undefined : true}
+            className="mobile-nav-brand"
+            aria-label="Kurt, intro"
+            onClick={
+              onSelectRoom
+                ? (e) => {
+                    e.preventDefault()
+                    setMobileMenuOpen(false)
+                    onSelectRoom('intro')
+                  }
+                : () => setMobileMenuOpen(false)
+            }
+          >
+            <img src="/brand/kurt-logo.png" width="18" height="21" alt="" />
+          </a>
+
+          <button
+            type="button"
+            className="mobile-nav-trigger"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-popover"
+            aria-label={
+              mobileMenuOpen
+                ? 'Close navigation menu'
+                : `Open navigation menu, current section ${currentItem.label}`
+            }
+            onClick={() => setMobileMenuOpen((open) => !open)}
+          >
+            <span className="mobile-nav-current">
+              <span>{currentItem.label}</span>
+            </span>
+            <span className="mobile-nav-burger" aria-hidden="true">
+              <span />
+              <span />
+            </span>
+          </button>
+        </div>
+
+        <nav
+          id="mobile-nav-popover"
+          className="mobile-nav-popover"
+          aria-label="Mobile navigation"
+          aria-hidden={!mobileMenuOpen}
+        >
+          {navItems.map((item, idx) => {
+            const isCurrent = currentRoom === item.room
+            return (
+              <a
+                key={item.room}
+                href={item.path}
+                data-route={onSelectRoom ? undefined : true}
+                tabIndex={mobileMenuOpen ? 0 : -1}
+                className={`mobile-nav-item ${isCurrent ? 'is-current' : ''}`}
+                aria-current={isCurrent ? 'page' : undefined}
+                onClick={
+                  onSelectRoom
+                    ? (e) => {
+                        e.preventDefault()
+                        setMobileMenuOpen(false)
+                        onSelectRoom(item.room)
+                      }
+                    : () => setMobileMenuOpen(false)
+                }
+              >
+                <span className="mobile-nav-index">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <span className="mobile-nav-label">{item.label}</span>
+              </a>
+            )
+          })}
+        </nav>
+      </div>
     </header>
   )
 }
@@ -930,6 +1038,7 @@ export function StudioHome({
 
     const onWheel = (event: WheelEvent) => {
       if (activeCertRef.current || privacyOpenRef.current) return
+      if (window.innerWidth <= 680) return
       const scroller = (event.target as Element | null)?.closest(
         '.experience-scroll-list, .spatial-scroll-overlay',
       )
@@ -978,11 +1087,22 @@ export function StudioHome({
     }
 
     const onTouchStart = (event: TouchEvent) => {
+      if (window.innerWidth <= 680) {
+        touchStartYRef.current = null
+        return
+      }
       touchStartYRef.current = event.touches[0]?.clientY ?? null
     }
 
     const onTouchEnd = (event: TouchEvent) => {
-      if (touchStartYRef.current === null) return
+      if (window.innerWidth <= 680 || touchStartYRef.current === null) {
+        touchStartYRef.current = null
+        return
+      }
+      if (activeCertRef.current || privacyOpenRef.current) {
+        touchStartYRef.current = null
+        return
+      }
       const scroller = (event.target as Element | null)?.closest(
         '.spatial-scroll-overlay',
       )
