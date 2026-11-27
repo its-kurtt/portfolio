@@ -589,7 +589,8 @@ svg {
   .project-header-strip {
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     gap: 16px 32px;
     padding-left: 0;
     padding-top: 18px;
@@ -2155,11 +2156,15 @@ svg {
 
 @media (max-width: 680px) {
   .project-hud-top {
-    padding: 12px 14px 0;
+    padding: 10px 10px 0;
   }
 
   .project-exhibition {
-    padding: 82px 0 56px;
+    padding: 78px 0 56px;
+  }
+
+  .project-inner {
+    padding: 0 14px;
   }
 
   .project-credits-bar,
@@ -2170,6 +2175,60 @@ svg {
 
   .credits-grid {
     grid-template-columns: 1fr;
+  }
+
+  .kg-carousel-showcase,
+  .shards-bento-showcase {
+    padding: 16px 14px;
+  }
+
+  .trailer-native-card {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .trailer-play-prompt {
+    top: 42%;
+    padding: 8px 16px 8px 10px;
+    gap: 9px;
+  }
+
+  .trailer-play-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .trailer-play-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .trailer-play-label {
+    font-size: 12.5px;
+  }
+
+  .trailer-controls {
+    gap: 6px;
+    padding: 18px 10px 10px;
+  }
+
+  .trailer-ctrl-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .trailer-ctrl-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .trailer-seek {
+    min-width: 44px;
+  }
+
+  .trailer-time {
+    font-size: 10.5px;
+    padding: 0 2px;
   }
 }
 

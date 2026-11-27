@@ -1057,9 +1057,9 @@ function StudioScene({
     initializedCamRef.current = true
     const p = motionRef.current.flyTarget
     const isNarrow = size.width < 680
-    const z0 = isNarrow ? 7.6 : 6.25
+    const z0 = isNarrow ? 8.35 : 6.25
     const z1 = isNarrow ? -1.4 : -2.2
-    const z2 = isNarrow ? -6.8 : -9.6
+    const z2 = isNarrow ? -6.2 : -9.6
     const z3 = isNarrow ? -20.6 : -21.8
     const z4 = isNarrow ? -30.5 : -31.8
     const s01 = smoothstep(0, 1, p)
@@ -1846,9 +1846,9 @@ function StudioScene({
        - Station 2 (p = 2.0, Works):      z = -9.6  looking at z = -16.5 (Centered 3D Carousel)
        - Station 3 (p = 3.0, Experience): z = -21.8 looking at z = -28.5 (ACM Progression Stage)
        - Station 4 (p = 4.0, Contact):    z = -31.8 looking at z = -40.5 (Vertical Fiber-Optic Vortex Finale) */
-    const z0 = isNarrow ? 7.6 : 6.25
+    const z0 = isNarrow ? 8.35 : 6.25
     const z1 = isNarrow ? -1.4 : -2.2
-    const z2 = isNarrow ? -6.8 : -9.6
+    const z2 = isNarrow ? -6.2 : -9.6
     const z3 = isNarrow ? -20.6 : -21.8
     const z4 = isNarrow ? -30.5 : -31.8
 
@@ -2060,7 +2060,7 @@ function StudioScene({
         delta * xStride - (1 - focus) * a.smoothPointerX * 0.24 * absDelta
       const posY =
         Math.sin(delta * 0.85) * 0.14 +
-        (isNarrow ? 0.08 : 0.1) +
+        (isNarrow ? 0.24 : 0.1) +
         (1 - workEnter) * -0.35 +
         (1 - focus) * a.smoothPointerY * 0.12
       const posZ =
