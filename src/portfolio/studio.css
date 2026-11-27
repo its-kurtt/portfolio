@@ -2214,8 +2214,9 @@ body:has(.studio-shell:not(.is-parked)) {
 @media (max-width: 680px) {
   .studio-hud-top {
     width: 100%;
-    padding: 10px 10px 0;
-    gap: 8px;
+    justify-content: center;
+    padding: 12px 10px 0;
+    gap: 0;
   }
 
   .studio-hud-top::before {
@@ -2234,24 +2235,14 @@ body:has(.studio-shell:not(.is-parked)) {
   }
 
   .studio-identity {
-    flex-shrink: 0;
-  }
-
-  .identity-mark {
-    width: 34px;
-    height: 34px;
-    padding: 5px;
-  }
-
-  .identity-meta {
     display: none;
   }
 
   .studio-capsule-nav {
-    padding: 0 8px;
-    gap: 2px;
+    padding: 0 10px;
+    gap: 3px;
     min-height: 40px;
-    max-width: calc(100% - 44px);
+    max-width: calc(100% - 16px);
     overflow-x: auto;
     scrollbar-width: none;
   }
@@ -2261,10 +2252,10 @@ body:has(.studio-shell:not(.is-parked)) {
   }
 
   .studio-capsule-nav a {
-    font-size: 9.5px;
+    font-size: 10px;
     min-height: 40px;
-    padding: 0 5px;
-    letter-spacing: 0.06em;
+    padding: 0 7px;
+    letter-spacing: 0.08em;
     white-space: nowrap;
   }
 
@@ -2301,6 +2292,13 @@ body:has(.studio-shell:not(.is-parked)) {
     overflow-x: auto;
     scrollbar-width: none;
     padding: 3px;
+  }
+
+  .studio-shell.room-intro .studio-webgl-host,
+  .studio-shell.room-intro .studio-webgl-host canvas,
+  .studio-shell.room-work .studio-webgl-host,
+  .studio-shell.room-work .studio-webgl-host canvas {
+    touch-action: none;
   }
 
   .hud-top-filters button {
@@ -2384,6 +2382,28 @@ body:has(.studio-shell:not(.is-parked)) {
 
   .console-input-row {
     grid-template-columns: 1fr;
+  }
+
+  .cert-modal-backdrop {
+    padding: 16px;
+  }
+
+  .cert-modal-card {
+    padding: 16px;
+    gap: 12px;
+    border-radius: 18px;
+  }
+
+  .cert-modal-img-wrap {
+    min-height: 0;
+    height: auto;
+  }
+
+  .cert-modal-media img,
+  .cert-modal-media canvas {
+    width: 100%;
+    height: auto;
+    max-height: 65vh;
   }
 }
 
