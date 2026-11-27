@@ -19,6 +19,8 @@ test('each advertised project and section can be opened as a clean standalone ro
       slug: work.slug,
     })
     assert.ok(work.role && work.outcome)
+    assert.ok(work.summary && work.summary.length > 20)
+    assert.ok(work.imageAlt && work.imageAlt.length > 15)
   }
   assert.equal(new Set(works.map((work) => work.slug)).size, works.length)
   assert.deepEqual(resolveRoute('/'), { kind: 'home', section: 'intro' })
@@ -32,6 +34,8 @@ test('each advertised project and section can be opened as a clean standalone ro
     kind: 'home',
     section: 'contact',
   })
+  assert.deepEqual(resolveRoute('/privacy'), { kind: 'privacy' })
+  assert.deepEqual(resolveRoute('/privacy-policy'), { kind: 'privacy' })
   assert.equal(pathForSection('about'), '/about')
   assert.equal(pathForSection('work'), '/projects')
   assert.equal(pathForSection('experience'), '/experience')
