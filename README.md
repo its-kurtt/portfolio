@@ -1,79 +1,45 @@
-# Kurt — Portfolio
+# Hi, I'm Kurt
 
-An interactive 3D studio portfolio built with React, Vite, TypeScript, and Three.js (React Three Fiber) for Kurt — 3D artist, front-end developer, and web designer based in Metro Manila, Philippines.
+**3D Artist · Front-end Developer · Web Designer**  
+Based in Metro Manila, Philippines · [kurtdeslate.vercel.app](https://kurtdeslate.vercel.app)
 
-## Overview
+I'm a 4th year Computer Science student who builds interactive React web interfaces, hard-surface 3D game assets, and Blender animations. I also served as Director for Creatives at the FEU Tech ACM Student Chapter, leading event branding and creative teams across campus-wide events.
 
-The entire portfolio lives inside one continuous full-viewport Three.js WebGL studio with five spatial sections connected by smooth camera fly-through navigation:
+---
 
-- **Intro (`/`)** — Sculpted dual-material 3D `K` logo monolith lit by a procedural `PMREMGenerator` studio softbox environment over floating volumetric bokeh.
-- **About (`/about`)** — Portrait, background, tech stack, and interactive certifications modal (with privacy-redacted credential previews).
-- **Projects (`/projects`)** — Bounded 3D exhibition carousel with discipline filters (`All Projects`, `Web Design`, `3D`, `Animation`), single-mesh WebGL image & live `VideoTexture` previews, hover-reactive specular lighting and corner tilt, and 3D fly-through transitions into standalone `/projects/<slug>` showcase pages.
-- **Experience (`/experience`)** — Organization-grouped roles and highlights.
-- **Contact (`/contact`)** — Copyable email, LinkedIn/GitHub links, and Privacy Policy modal.
+## Featured Projects
 
-Under `prefers-reduced-motion: reduce` or WebGL fallback, the 3D scene stays unmounted and semantic HTML/CSS views keep every section, project, and control accessible.
+- **[The Known Galaxy](https://the-known-galaxy.vercel.app)** _(Web Design & Front-end)_ — Solo-built React & TypeScript interactive web archive reimagining the Jedi Order Notion wiki into a structured web hub.
+- **Shards of the Past** _(3D Game Art)_ — Commissioned hard-surface sci-fi props, armor sets, weapons, and character morphs modeled in Blender and optimized under 10K triangles for Roblox.
+- **ACM Heartwired** _(3D & Animation)_ — Official 3D Valentine's event teaser for FEU Tech ACM modeled and animated from scratch in Blender (6.2K views).
+- **CS Night 2026** _(3D & Animation)_ — Official 3D promotional trailer for CS Night 2026 screened across campus (6.4K views).
+- **FIT ACM ’25–’26** _(3D & Animation)_ — 3D school year retrospective connecting each chapter event's main poster theme in Blender (4.3K views).
+- **ACM Revival X** _(3D & Animation)_ — Cinematic 3D teaser for FEU Tech ACM's flagship event (2.2K views).
+- **ACM Elysium** _(3D & Animation)_ — 18th anniversary 3D retrospective tribute tracing 18 years of FIT ACM (1.8K views).
 
-## Tech Stack
+---
 
-- **Framework & Build:** React, TypeScript, Vite
-- **3D & Graphics:** Three.js, React Three Fiber, custom GLSL card/backdrop/particle shaders
-- **Typography:** Self-hosted Archivo & Manrope (OFL-licensed Latin WOFF2)
-- **Tooling:** ESLint, Prettier, Node built-in test runner
+## Experience
 
-## Getting Started
+### FEU Tech ACM Student Chapter _(2024 — 2026)_
 
-1. Install Node.js 24 and npm.
-2. Install dependencies:
-   ```sh
-   npm ci
-   ```
-3. Start the local dev server:
-   ```sh
-   npm run dev
-   ```
-4. Build and preview production output:
-   ```sh
-   npm run build
-   npm run preview
-   ```
+- **Director for Creatives** _(Jan 2026 – Jul 2026)_ — Maintained branding across 7 events, reviewed team output, produced 2D & 3D materials, and mentored two incoming creative leaders.
+- **Co-Director for Creatives** _(Aug 2025 – Jan 2026)_ — Directed branding across 4 events with the Creatives Committee and marketing; served as Event Head for _Boot Up!_, welcoming 300+ new members.
+- **Junior Officer for Creatives** _(Sep 2024 – Jul 2025)_ — Supported 6 events with 2D graphics and 3D animations in Canva, Photoshop, and Blender, and led a small sub-team across 3 chapter events.
 
-## Scripts
+---
+
+## Tech Stack & Tools
+
+- **Front-end:** React, TypeScript, JavaScript, HTML / CSS, Figma
+- **3D & Design:** Blender, Photoshop, Canva
+- **Other:** Python, Java, C++, Lua, Node.js, MongoDB
+
+---
+
+## Running Locally
 
 ```sh
-npm run format:check
-npm run typecheck
-npm run lint
-npm test
-npm run build
-```
-
-## Project Structure
-
-```text
-portfolio/
-├── index.html
-├── package.json / package-lock.json
-├── vite.config.ts / tsconfig.json
-├── eslint.config.mjs / .gitignore
-├── public/
-│   ├── brand/                 logo assets
-│   ├── certificates/          redacted certification previews
-│   ├── fonts/                 self-hosted Archivo & Manrope fonts + OFL licenses
-│   ├── portrait/              studio portrait assets
-│   └── work/                  project screenshots, 3D renders, and video previews
-├── scripts/
-│   └── portfolio.test.mjs     route and navigation unit tests
-└── src/
-    ├── main.tsx
-    └── portfolio/
-        ├── Portfolio.tsx      History API routing, project showcase pages & canvas video player
-        ├── StudioHome.tsx     5-chapter spatial HUD, filters, modals & detached video decoder pool
-        ├── StudioUniverse.tsx Three.js / R3F 3D studio scene, shaders & camera choreography
-        ├── SkeletonMedia.tsx  canvas-backed image renderer with skeleton shimmer
-        ├── FeatureLab.tsx     interactive training-carousel breakdown
-        ├── content.ts         project metadata and summaries
-        ├── routes.ts          route resolution helpers
-        ├── studio.css         spatial studio HUD styles
-        └── portfolio.css      project showcase viewer styles
+npm ci
+npm run dev
 ```
