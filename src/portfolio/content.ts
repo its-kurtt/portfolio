@@ -157,6 +157,8 @@ export const works: Work[] = [
     outcome: '6.2K views',
     tools: ['Blender'],
     plateVariant: 'heartwired',
+    imageAlt:
+      '3D Blender scene from ACM Heartwired Valentine’s event teaser showing stylized red hearts and a calendar struck by an arrow.',
     video: {
       href: 'https://www.facebook.com/share/v/1CcfkV87nW/',
       localSrc: '/work/videos/acm-heartwired.mp4',
@@ -195,6 +197,8 @@ export const works: Work[] = [
     outcome: '6.4K views',
     tools: ['Blender'],
     plateVariant: 'cs-night',
+    imageAlt:
+      '3D animated scene from the official CS Night 2026 event trailer for FEU Tech ACM modeled and rendered in Blender.',
     video: {
       href: 'https://www.facebook.com/share/v/19rwB6Sa4S/',
       localSrc: '/work/videos/cs-night-2026.mp4',
@@ -233,6 +237,8 @@ export const works: Work[] = [
     outcome: '4.3K views',
     tools: ['Blender'],
     plateVariant: 'fit-acm',
+    imageAlt:
+      '3D Blender retrospective scene from FIT ACM 2025–2026 school year recap inspired by the chapter’s event posters.',
     video: {
       href: 'https://www.facebook.com/share/v/1E5vHC9i6N/',
       localSrc: '/work/videos/fit-acm-25-26.mp4',
@@ -272,6 +278,8 @@ export const works: Work[] = [
     outcome: '2.2K views',
     tools: ['Blender'],
     plateVariant: 'revival-x',
+    imageAlt:
+      'Cinematic 3D Blender teaser frame from FEU Tech ACM’s flagship event Revival X.',
     video: {
       href: 'https://www.facebook.com/share/v/1A79Ufg7db/',
       localSrc: '/work/videos/revival-x.mp4',
@@ -310,6 +318,8 @@ export const works: Work[] = [
     outcome: '1.8K views',
     tools: ['Blender'],
     plateVariant: 'elysium',
+    imageAlt:
+      '3D Blender anniversary retrospective scene from ACM Elysium celebrating 18 years of FEU Tech ACM.',
     video: {
       href: 'https://www.facebook.com/share/v/19xdASjj6q/',
       localSrc: '/work/videos/acm-elysium.mp4',

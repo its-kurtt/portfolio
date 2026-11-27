@@ -36,6 +36,7 @@ export function resolveRoute(
 ):
   | { kind: 'home'; section: StudioRouteSection }
   | { kind: 'work'; slug: string }
+  | { kind: 'privacy' }
   | { kind: 'missing' } {
   const path = pathname.replace(/\/+$/, '') || '/'
   if (path === '/') return { kind: 'home', section: 'intro' }
@@ -44,6 +45,8 @@ export function resolveRoute(
     return { kind: 'home', section: 'work' }
   if (path === '/experience') return { kind: 'home', section: 'experience' }
   if (path === '/contact') return { kind: 'home', section: 'contact' }
+  if (path === '/privacy' || path === '/privacy-policy')
+    return { kind: 'privacy' }
   const match = /^\/(?:projects|work)\/([a-z0-9-]+)$/.exec(path)
   return match ? { kind: 'work', slug: match[1] } : { kind: 'missing' }
 }
