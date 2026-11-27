@@ -140,9 +140,11 @@ export function formatManilaTime(date: Date) {
 
 export function StudioTopHeader({
   currentRoom,
+  pageLabel,
   onSelectRoom,
 }: {
-  currentRoom: StudioRoom
+  currentRoom: StudioRoom | null
+  pageLabel?: string
   onSelectRoom?: (room: StudioRoom) => void
 }) {
   const [clock, setClock] = useState(() => formatManilaTime(new Date()))
@@ -178,8 +180,8 @@ export function StudioTopHeader({
     { room: 'contact', path: '/contact', label: 'CONTACT' },
   ]
 
-  const currentItem =
-    navItems.find((item) => item.room === currentRoom) ?? navItems[0]
+  const currentItem = navItems.find((item) => item.room === currentRoom)
+  const mobilePillLabel = pageLabel ?? currentItem?.label ?? 'MENU'
 
   return (
     <header className="studio-hud-top">
@@ -266,12 +268,12 @@ export function StudioTopHeader({
             aria-label={
               mobileMenuOpen
                 ? 'Close navigation menu'
-                : `Open navigation menu, current section ${currentItem.label}`
+                : `Open navigation menu, current page ${mobilePillLabel}`
             }
             onClick={() => setMobileMenuOpen((open) => !open)}
           >
             <span className="mobile-nav-current">
-              <span>{currentItem.label}</span>
+              <span>{mobilePillLabel}</span>
             </span>
             <span className="mobile-nav-burger" aria-hidden="true">
               <span />
@@ -1418,7 +1420,12 @@ export function StudioHome({
       >
         {/* Fallback Emblem (Shown only if WebGL disabled / reduced motion) */}
         <div className="intro-emblem-fallback" aria-hidden={showLiveWebGL}>
-          <img src="/brand/kurt-logo.png" width="140" height="160" alt="" />
+          <img
+            src="/brand/kurt-logo.png"
+            width="140"
+            height="160"
+            alt="Kurt K monogram"
+          />
         </div>
 
         {/* Clean Minimal Bottom Arrival Prompt with Monumental "KURT" Name */}

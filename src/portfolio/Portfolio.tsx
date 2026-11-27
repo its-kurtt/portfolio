@@ -9,6 +9,7 @@ import type { MouseEvent } from 'react'
 import { works } from './content'
 import type { Work, WorkVideo } from './content'
 import { Arrow } from './FeatureLab'
+import { NotFoundStage } from './NotFoundStage'
 import { pathForSection, resolveRoute, sectionFromLocation } from './routes'
 import { ProtectedImageCanvas, SkeletonImage } from './SkeletonMedia'
 import { ShowcasePlate, StudioHome, StudioTopHeader } from './StudioHome'
@@ -236,7 +237,7 @@ function VideoShowcase({ title, video }: { title: string; video: WorkVideo }) {
           {video.poster && (
             <ProtectedImageCanvas
               src={video.poster}
-              alt=""
+              alt={`${title} video preview frame`}
               className="trailer-poster-bg"
             />
           )}
@@ -1106,7 +1107,7 @@ function ProjectShowcase({
                     <SkeletonImage
                       wrapperClassName="kg-thumb-media"
                       src={shot.src}
-                      alt=""
+                      alt={shot.alt}
                       loading="lazy"
                     />
                   </button>
@@ -1242,6 +1243,216 @@ function readSavedWorkSlug(): string | undefined {
   } catch {
     return undefined
   }
+}
+
+const SITE_ORIGIN = 'https://kurtdeslate.vercel.app'
+const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/work/known-galaxy/thumbnail-collage.jpg`
+const DEFAULT_OG_ALT =
+  "Selected 3D and web design works from Kurt's interactive portfolio."
+
+function upsertMetaTag(
+  selector: string,
+  attrName: 'name' | 'property',
+  attrValue: string,
+  content: string,
+) {
+  let el = document.head.querySelector<HTMLMetaElement>(selector)
+  if (!el) {
+    el = document.createElement('meta')
+    el.setAttribute(attrName, attrValue)
+    document.head.appendChild(el)
+  }
+  el.setAttribute('content', content)
+}
+
+function upsertCanonical(href: string) {
+  let link = document.head.querySelector<HTMLLinkElement>(
+    'link[rel="canonical"]',
+  )
+  if (!link) {
+    link = document.createElement('link')
+    link.setAttribute('rel', 'canonical')
+    document.head.appendChild(link)
+  }
+  link.setAttribute('href', href)
+}
+
+function applyPageMetadata(meta: {
+  title: string
+  description: string
+  canonicalPath: string
+  robots?: string
+  image?: string
+  imageAlt?: string
+}) {
+  const canonicalUrl = `${SITE_ORIGIN}${meta.canonicalPath}`
+  const ogImage = meta.image
+    ? meta.image.startsWith('http')
+      ? meta.image
+      : `${SITE_ORIGIN}${meta.image}`
+    : DEFAULT_OG_IMAGE
+  const ogAlt = meta.imageAlt ?? DEFAULT_OG_ALT
+
+  document.title = meta.title
+  upsertMetaTag(
+    'meta[name="description"]',
+    'name',
+    'description',
+    meta.description,
+  )
+  upsertMetaTag(
+    'meta[name="robots"]',
+    'name',
+    'robots',
+    meta.robots ?? 'index, follow',
+  )
+  upsertCanonical(canonicalUrl)
+  upsertMetaTag('meta[property="og:title"]', 'property', 'og:title', meta.title)
+  upsertMetaTag(
+    'meta[property="og:description"]',
+    'property',
+    'og:description',
+    meta.description,
+  )
+  upsertMetaTag('meta[property="og:url"]', 'property', 'og:url', canonicalUrl)
+  upsertMetaTag('meta[property="og:image"]', 'property', 'og:image', ogImage)
+  upsertMetaTag(
+    'meta[property="og:image:alt"]',
+    'property',
+    'og:image:alt',
+    ogAlt,
+  )
+  upsertMetaTag(
+    'meta[name="twitter:title"]',
+    'name',
+    'twitter:title',
+    meta.title,
+  )
+  upsertMetaTag(
+    'meta[name="twitter:description"]',
+    'name',
+    'twitter:description',
+    meta.description,
+  )
+  upsertMetaTag('meta[name="twitter:image"]', 'name', 'twitter:image', ogImage)
+}
+
+const HOME_SECTION_META: Record<
+  StudioRoom,
+  { title: string; description: string; path: string }
+> = {
+  intro: {
+    title: 'Kurt — Portfolio',
+    description:
+      'Portfolio of Kurt — 3D artist, front-end developer, and web designer in Metro Manila, Philippines. Explore selected 3D, animation, and web projects.',
+    path: '/',
+  },
+  about: {
+    title: 'About — Kurt',
+    description:
+      'Learn about Kurt, a Computer Science student, 3D artist, and front-end developer in Metro Manila, plus his toolkit and certifications.',
+    path: '/about',
+  },
+  work: {
+    title: 'Projects — Kurt',
+    description:
+      "Browse Kurt's curated 3D animation, hard-surface game art, and interactive web design projects in an interactive 3D studio showcase.",
+    path: '/projects',
+  },
+  experience: {
+    title: 'Experience — Kurt',
+    description:
+      'Leadership and creative direction timeline of Kurt with the FEU Tech ACM Student Chapter.',
+    path: '/experience',
+  },
+  contact: {
+    title: 'Contact — Kurt',
+    description:
+      'Get in touch with Kurt for 3D projects, front-end collaborations, creative ideas, or just to say hello.',
+    path: '/contact',
+  },
+}
+
+function PrivacyPage() {
+  return (
+    <article className="legal-page" aria-labelledby="privacy-page-title">
+      <div className="legal-card">
+        <header className="legal-header">
+          <span className="legal-eyebrow">LEGAL</span>
+          <h1 id="privacy-page-title">Privacy Policy</h1>
+          <p className="legal-updated">Effective Date: November 2026</p>
+        </header>
+
+        <div className="legal-body">
+          <p>
+            This Privacy Policy explains how this portfolio website operated by
+            Kurt handles information when you visit or interact with the site.
+          </p>
+
+          <section className="legal-section">
+            <h2>1. Information We Collect</h2>
+            <p>
+              This website does not collect, store, sell, or share personally
+              identifiable information. No user accounts, analytics trackers, or
+              advertising cookies are used.
+            </p>
+          </section>
+
+          <section className="legal-section">
+            <h2>2. Local Browser Storage</h2>
+            <p>
+              To support smooth navigation across pages, this site may use your
+              browser&apos;s temporary session storage. This data remains on
+              your device, is never transmitted to any server, and is
+              automatically cleared when you close your browser tab.
+            </p>
+          </section>
+
+          <section className="legal-section">
+            <h2>3. Third-Party Links &amp; Hosting</h2>
+            <p>
+              This site contains links to external websites (including LinkedIn,
+              GitHub, Facebook, Roblox, and live project demos). Once you leave
+              this site, your interactions are governed by the privacy policies
+              of those respective services. Standard hosting infrastructure may
+              temporarily process technical request logs (such as IP address and
+              browser user agent) for security and delivery.
+            </p>
+          </section>
+
+          <section className="legal-section">
+            <h2>4. Direct Communications</h2>
+            <p>
+              If you choose to send an email to{' '}
+              <a href="mailto:kurtdeslate.dev@gmail.com">
+                kurtdeslate.dev@gmail.com
+              </a>
+              , any information you provide is used solely to respond to your
+              message and is never shared with third parties.
+            </p>
+          </section>
+
+          <section className="legal-section">
+            <h2>5. Updates &amp; Contact</h2>
+            <p>
+              This policy may be updated if the site&apos;s functionality
+              changes. For any privacy-related questions, please contact{' '}
+              <a href="mailto:kurtdeslate.dev@gmail.com">
+                kurtdeslate.dev@gmail.com
+              </a>
+              .
+            </p>
+          </section>
+        </div>
+
+        <footer className="legal-footer">
+          <a className="project-back-btn" href="/contact" data-route>
+            <Arrow reverse /> BACK TO CONTACT
+          </a>
+        </footer>
+      </div>
+    </article>
+  )
 }
 
 export default function Portfolio() {
@@ -1457,12 +1668,42 @@ export default function Portfolio() {
   }, [])
 
   useEffect(() => {
-    document.title = work
-      ? `${work.title} — Kurt`
-      : route.kind === 'home'
-        ? 'Kurt — Portfolio'
-        : 'Page not found — Kurt'
-  }, [work, route.kind])
+    if (work) {
+      applyPageMetadata({
+        title: `${work.title} — Kurt`,
+        description: work.summary,
+        canonicalPath: `/projects/${work.slug}`,
+        image: work.thumbnail ?? work.image ?? work.video?.poster,
+        imageAlt: work.imageAlt ?? `${work.title} showcase visual by Kurt`,
+      })
+      return
+    }
+    if (route.kind === 'home') {
+      const sectionMeta = HOME_SECTION_META[homeRoom]
+      applyPageMetadata({
+        title: sectionMeta.title,
+        description: sectionMeta.description,
+        canonicalPath: sectionMeta.path,
+      })
+      return
+    }
+    if (route.kind === 'privacy') {
+      applyPageMetadata({
+        title: 'Privacy Policy — Kurt',
+        description:
+          "Privacy Policy for Kurt's portfolio website explaining local browser storage, external links, and direct email communications.",
+        canonicalPath: '/privacy',
+      })
+      return
+    }
+    applyPageMetadata({
+      title: '404 — Page Not Found | Kurt',
+      description:
+        "The page you're looking for doesn't exist on Kurt's portfolio. Return to the studio or browse selected projects.",
+      canonicalPath: pathname || '/404',
+      robots: 'noindex, follow',
+    })
+  }, [work, route.kind, homeRoom, pathname])
 
   function navigate(event: MouseEvent<HTMLDivElement>) {
     if (
@@ -1515,7 +1756,14 @@ export default function Portfolio() {
 
       {/* Persistent Unified Header — Never animates, fades, or shifts across route changes */}
       <StudioTopHeader
-        currentRoom={isHome ? homeRoom : 'work'}
+        currentRoom={isHome ? homeRoom : work ? 'work' : null}
+        pageLabel={
+          route.kind === 'privacy'
+            ? 'PRIVACY'
+            : !isHome && !work
+              ? '404'
+              : undefined
+        }
         onSelectRoom={handleHeaderSelectRoom}
       />
 
@@ -1537,14 +1785,10 @@ export default function Portfolio() {
               work={work}
               exiting={exitingProject}
             />
+          ) : route.kind === 'privacy' ? (
+            <PrivacyPage />
           ) : (
-            <section className="missing-page">
-              <a className="project-back-btn" href="/projects" data-route>
-                <Arrow reverse /> BACK TO PROJECTS
-              </a>
-              <h1>Page not found.</h1>
-              <p>That address does not match a project in this portfolio.</p>
-            </section>
+            <NotFoundStage />
           ))}
       </main>
     </div>
