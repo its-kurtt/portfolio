@@ -1567,12 +1567,17 @@ function StudioScene({
     }
 
     const onPointerDown = (event: PointerEvent) => {
-      if (
-        !activeRef.current ||
-        roomRef.current !== 'work' ||
-        event.button !== 0
-      )
+      if (!activeRef.current || event.button !== 0) return
+      if (roomRef.current === 'intro' && event.pointerType === 'touch') {
+        onWindowPointerMove(event)
+        try {
+          dom.setPointerCapture(event.pointerId)
+        } catch {
+          // Ignore if pointer capture is unavailable
+        }
         return
+      }
+      if (roomRef.current !== 'work') return
       animRef.current.dragging = true
       animRef.current.dragStartX = event.clientX
       animRef.current.dragStartY = event.clientY
@@ -1590,11 +1595,21 @@ function StudioScene({
       if (count <= 1) return
       const dx = event.clientX - animRef.current.dragStartX
       const dy = event.clientY - animRef.current.dragStartY
+      if (
+        event.pointerType === 'touch' &&
+        window.innerWidth <= 680 &&
+        Math.abs(dy) > Math.abs(dx)
+      ) {
+        return
+      }
       animRef.current.dragMoved = Math.max(
         animRef.current.dragMoved,
         Math.hypot(dx, dy),
       )
-      const stride = Math.max(240, window.innerWidth * 0.3)
+      const stride =
+        window.innerWidth <= 680
+          ? Math.max(150, window.innerWidth * 0.42)
+          : Math.max(240, window.innerWidth * 0.3)
       const rawNext = animRef.current.dragStartPos - dx / stride
       // Subtle rubber-band resistance at first & last project boundaries (non-infinite)
       animRef.current.targetPos = Math.max(
@@ -1604,6 +1619,13 @@ function StudioScene({
     }
 
     const finishDrag = (event: PointerEvent) => {
+      if (roomRef.current === 'intro' && event.pointerType === 'touch') {
+        if (dom.hasPointerCapture(event.pointerId)) {
+          dom.releasePointerCapture(event.pointerId)
+        }
+        onWindowPointerLeave()
+        return
+      }
       if (!animRef.current.dragging) return
       animRef.current.dragging = false
       const startSlot = animRef.current.dragStartSlot
@@ -1643,7 +1665,21 @@ function StudioScene({
           onSelectIndex(nextIdx)
         }
       } else if (count > 1) {
-        const snapped = clampIndex(Math.round(animRef.current.targetPos), count)
+        const startIdx = clampIndex(
+          Math.round(animRef.current.dragStartPos),
+          count,
+        )
+        let snapped = clampIndex(Math.round(animRef.current.targetPos), count)
+        if (window.innerWidth <= 680 && snapped === startIdx) {
+          const totalDx = event.clientX - animRef.current.dragStartX
+          const totalDy = event.clientY - animRef.current.dragStartY
+          if (
+            Math.abs(totalDx) >= 36 &&
+            Math.abs(totalDx) > Math.abs(totalDy)
+          ) {
+            snapped = clampIndex(startIdx + (totalDx < 0 ? 1 : -1), count)
+          }
+        }
         animRef.current.targetPos = snapped
         animRef.current.lastReportedIndex = snapped
         onSelectIndex(snapped)

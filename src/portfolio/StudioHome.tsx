@@ -930,6 +930,7 @@ export function StudioHome({
 
     const onWheel = (event: WheelEvent) => {
       if (activeCertRef.current || privacyOpenRef.current) return
+      if (window.innerWidth <= 680) return
       const scroller = (event.target as Element | null)?.closest(
         '.experience-scroll-list, .spatial-scroll-overlay',
       )
@@ -978,11 +979,22 @@ export function StudioHome({
     }
 
     const onTouchStart = (event: TouchEvent) => {
+      if (window.innerWidth <= 680) {
+        touchStartYRef.current = null
+        return
+      }
       touchStartYRef.current = event.touches[0]?.clientY ?? null
     }
 
     const onTouchEnd = (event: TouchEvent) => {
-      if (touchStartYRef.current === null) return
+      if (window.innerWidth <= 680 || touchStartYRef.current === null) {
+        touchStartYRef.current = null
+        return
+      }
+      if (activeCertRef.current || privacyOpenRef.current) {
+        touchStartYRef.current = null
+        return
+      }
       const scroller = (event.target as Element | null)?.closest(
         '.spatial-scroll-overlay',
       )
