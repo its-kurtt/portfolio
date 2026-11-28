@@ -723,6 +723,37 @@ const shardsBentoShots: ShardsBentoShot[] = [
 
 type LightboxPhase = 'entering' | 'open' | 'closing'
 
+const trainTrackShots: GalleryShot[] = [
+  {
+    src: '/work/train-track/screen-01-home.png',
+    alt: 'Train Track Home screen showing Beep Card balance, quick Book a Ride form, and recent LRT ticket activity.',
+  },
+  {
+    src: '/work/train-track/screen-02-ticket.png',
+    alt: 'Train Track Ticket booking screen with station selector, travel time, fare calculation, and Beep, GCash, and Maya payment options.',
+  },
+  {
+    src: '/work/train-track/screen-03-track.png',
+    alt: 'Train Track live GPS train tracking screen showing current LRT-2 train position between Pureza, Legarda, and Recto with station ETAs.',
+  },
+  {
+    src: '/work/train-track/screen-04-stations.png',
+    alt: 'Train Track Train Stations screen with LRT 1, LRT 2, and MRT filters plus color-coded High, Medium, and Low crowd density cards.',
+  },
+  {
+    src: '/work/train-track/screen-05-details.png',
+    alt: 'Train Track Station Details screen for Recto Station displaying current crowd density, rush hours, and nearby landmarks grid.',
+  },
+  {
+    src: '/work/train-track/screen-06-details-2.png',
+    alt: 'Train Track Station Details continuation showing Recto Station North Entrance photo, history, and LRT-1 Doroteo Jose transfer info.',
+  },
+  {
+    src: '/work/train-track/screen-07-topup.png',
+    alt: 'Train Track Top Up screen for reloading a Beep Card with preset peso amounts and GCash or Maya payment options.',
+  },
+]
+
 type LightboxRect = {
   left: number
   top: number
@@ -733,7 +764,7 @@ type LightboxRect = {
 type LightboxState = {
   items: GalleryShot[]
   index: number
-  sourceKind: 'kg' | 'shards'
+  sourceKind: 'kg' | 'shards' | 'train'
   phase: LightboxPhase
   fromRect: LightboxRect | null
 }
@@ -760,16 +791,20 @@ function ProjectShowcase({
   work: Work
   exiting?: boolean
 }) {
-  const [kgIndex, setKgIndex] = useState(0)
   const [lightboxState, setLightboxState] = useState<LightboxState | null>(null)
   const lightboxImgRef = useRef<HTMLCanvasElement>(null)
-  const kgActiveImgRef = useRef<HTMLCanvasElement>(null)
+  const kgImgRefs = useRef<Record<number, HTMLCanvasElement | null>>({})
+  const trainImgRefs = useRef<Record<number, HTMLCanvasElement | null>>({})
   const shardsImgRefs = useRef<Record<number, HTMLCanvasElement | null>>({})
   const closeTimerRef = useRef<number | null>(null)
 
   const getSourceImg = useCallback(
-    (kind: 'kg' | 'shards', index: number): HTMLCanvasElement | null => {
-      if (kind === 'kg') return kgActiveImgRef.current
+    (
+      kind: 'kg' | 'shards' | 'train',
+      index: number,
+    ): HTMLCanvasElement | null => {
+      if (kind === 'kg') return kgImgRefs.current[index] ?? null
+      if (kind === 'train') return trainImgRefs.current[index] ?? null
       return shardsImgRefs.current[index] ?? null
     },
     [],
@@ -779,7 +814,7 @@ function ProjectShowcase({
     (
       items: GalleryShot[],
       index: number,
-      sourceKind: 'kg' | 'shards',
+      sourceKind: 'kg' | 'shards' | 'train',
       sourceEl: HTMLCanvasElement | null,
     ) => {
       if (closeTimerRef.current !== null) {
@@ -813,9 +848,6 @@ function ProjectShowcase({
       const nextIndex =
         (lightboxState.index + delta + lightboxState.items.length) %
         lightboxState.items.length
-      if (lightboxState.sourceKind === 'kg') {
-        setKgIndex(nextIndex)
-      }
       setLightboxState((prev) => (prev ? { ...prev, index: nextIndex } : null))
     },
     [lightboxState],
@@ -922,13 +954,6 @@ function ProjectShowcase({
     return () => window.removeEventListener('keydown', onKey)
   }, [lightboxState, closeLightbox, stepLightbox])
 
-  const safeKgIdx = Math.max(
-    0,
-    Math.min(knownGalaxyDesktopShots.length - 1, kgIndex),
-  )
-  const currentKgShot =
-    knownGalaxyDesktopShots[safeKgIdx] ?? knownGalaxyDesktopShots[0]
-
   const activeLightboxShot = lightboxState
     ? lightboxState.items[lightboxState.index]
     : null
@@ -1023,7 +1048,7 @@ function ProjectShowcase({
 
         <section className="project-media-stage" aria-label="Project gallery">
           {work.slug === 'the-known-galaxy' ? (
-            <div className="kg-carousel-showcase">
+            <div className="kg-grid-showcase">
               <div className="kg-showcase-bar">
                 <div>
                   <span className="gallery-section-label">
@@ -1036,79 +1061,30 @@ function ProjectShowcase({
                 </div>
               </div>
 
-              <div className="kg-stage-viewport">
-                <button
-                  type="button"
-                  className="kg-nav-arrow is-prev"
-                  aria-label="Previous screenshot"
-                  onClick={() =>
-                    setKgIndex(
-                      (prev) =>
-                        (prev - 1 + knownGalaxyDesktopShots.length) %
-                        knownGalaxyDesktopShots.length,
-                    )
-                  }
-                >
-                  <Arrow reverse />
-                </button>
-
-                <button
-                  type="button"
-                  key={currentKgShot.src}
-                  className="kg-active-slide"
-                  aria-label={`Expand ${currentKgShot.alt}`}
-                  onClick={() =>
-                    openLightbox(
-                      knownGalaxyDesktopShots,
-                      safeKgIdx,
-                      'kg',
-                      kgActiveImgRef.current,
-                    )
-                  }
-                >
-                  <SkeletonImage
-                    ref={kgActiveImgRef}
-                    wrapperClassName="kg-slide-media"
-                    src={currentKgShot.src}
-                    alt={currentKgShot.alt}
-                    fetchPriority="high"
-                  />
-                </button>
-
-                <button
-                  type="button"
-                  className="kg-nav-arrow is-next"
-                  aria-label="Next screenshot"
-                  onClick={() =>
-                    setKgIndex(
-                      (prev) => (prev + 1) % knownGalaxyDesktopShots.length,
-                    )
-                  }
-                >
-                  <Arrow />
-                </button>
-              </div>
-
-              <div
-                className="kg-thumb-strip"
-                role="tablist"
-                aria-label="Select screenshot"
-              >
+              <div className="kg-shots-grid">
                 {knownGalaxyDesktopShots.map((shot, idx) => (
                   <button
                     key={shot.src}
                     type="button"
-                    role="tab"
-                    aria-selected={idx === safeKgIdx}
-                    aria-label={shot.alt}
-                    className={`kg-thumb-btn ${idx === safeKgIdx ? 'is-active' : ''}`}
-                    onClick={() => setKgIndex(idx)}
+                    className="kg-shot-tile"
+                    aria-label={`Expand ${shot.alt}`}
+                    onClick={() =>
+                      openLightbox(
+                        knownGalaxyDesktopShots,
+                        idx,
+                        'kg',
+                        kgImgRefs.current[idx] ?? null,
+                      )
+                    }
                   >
                     <SkeletonImage
-                      wrapperClassName="kg-thumb-media"
+                      ref={(el) => {
+                        kgImgRefs.current[idx] = el
+                      }}
+                      wrapperClassName="kg-shot-media"
                       src={shot.src}
                       alt={shot.alt}
-                      loading="lazy"
+                      loading={idx < 2 ? 'eager' : 'lazy'}
                     />
                   </button>
                 ))}
@@ -1149,6 +1125,46 @@ function ProjectShowcase({
                         shardsImgRefs.current[idx] = el
                       }}
                       wrapperClassName="shards-tile-media"
+                      src={shot.src}
+                      alt={shot.alt}
+                      loading={idx < 4 ? 'eager' : 'lazy'}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : work.slug === 'train-track' ? (
+            <div className="train-track-showcase">
+              <div className="kg-showcase-bar">
+                <div>
+                  <span className="gallery-section-label">UI SCREENSHOTS</span>
+                  <p className="kg-showcase-note">
+                    7 mobile UI concept screens — click any screen to expand.
+                  </p>
+                </div>
+              </div>
+
+              <div className="train-track-grid">
+                {trainTrackShots.map((shot, idx) => (
+                  <button
+                    key={shot.src}
+                    type="button"
+                    className="train-track-tile"
+                    aria-label={`Expand ${shot.alt}`}
+                    onClick={() =>
+                      openLightbox(
+                        trainTrackShots,
+                        idx,
+                        'train',
+                        trainImgRefs.current[idx] ?? null,
+                      )
+                    }
+                  >
+                    <SkeletonImage
+                      ref={(el) => {
+                        trainImgRefs.current[idx] = el
+                      }}
+                      wrapperClassName="train-track-media"
                       src={shot.src}
                       alt={shot.alt}
                       loading={idx < 4 ? 'eager' : 'lazy'}
@@ -1378,7 +1394,6 @@ function PrivacyPage() {
     <article className="legal-page" aria-labelledby="privacy-page-title">
       <div className="legal-card">
         <header className="legal-header">
-          <span className="legal-eyebrow">LEGAL</span>
           <h1 id="privacy-page-title">Privacy Policy</h1>
           <p className="legal-updated">Effective Date: November 2026</p>
         </header>

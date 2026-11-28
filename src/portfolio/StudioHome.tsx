@@ -1855,12 +1855,61 @@ export function StudioHome({
                 collaborations, creative ideas, or just to say hi.
               </p>
 
-              <div className="contact-email-glass">
-                <a href="mailto:kurtdeslate.dev@gmail.com">
+              <div
+                className={`contact-email-glass ${copiedEmail ? 'is-copied' : ''}`}
+              >
+                <a
+                  href="mailto:kurtdeslate.dev@gmail.com"
+                  className="contact-email-link"
+                >
                   kurtdeslate.dev@gmail.com
                 </a>
-                <button type="button" onClick={handleCopyEmail}>
-                  {copiedEmail ? 'COPIED' : 'COPY'}
+                <button
+                  type="button"
+                  className="contact-copy-btn"
+                  onClick={handleCopyEmail}
+                  aria-label={
+                    copiedEmail
+                      ? 'Email address copied to clipboard'
+                      : 'Copy email address'
+                  }
+                >
+                  <span className="copy-label-stack" aria-hidden="true">
+                    <span
+                      className={`copy-label-slot ${copiedEmail ? 'is-hidden' : 'is-visible'}`}
+                    >
+                      COPY
+                    </span>
+                    <span
+                      className={`copy-label-slot ${copiedEmail ? 'is-visible' : 'is-hidden'}`}
+                    >
+                      COPIED
+                    </span>
+                  </span>
+                  <span className="copy-icon-stack" aria-hidden="true">
+                    <span
+                      className={`copy-icon-slot ${copiedEmail ? 'is-hidden' : 'is-visible'}`}
+                    >
+                      <svg viewBox="0 0 24 24">
+                        <rect x="9" y="9" width="11" height="11" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                      </svg>
+                    </span>
+                    <span
+                      className={`copy-icon-slot is-check ${copiedEmail ? 'is-visible' : 'is-hidden'}`}
+                    >
+                      <svg viewBox="0 0 24 24">
+                        <path d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                  </span>
+                  <span
+                    className={`copy-feedback-pill ${copiedEmail ? 'is-visible' : ''}`}
+                    role="status"
+                    aria-live="polite"
+                  >
+                    {copiedEmail ? 'Copied' : ''}
+                  </span>
                 </button>
               </div>
 
@@ -1947,7 +1996,6 @@ export function StudioHome({
           >
             <div className="cert-modal-header">
               <div>
-                <span className="about-section-label">LEGAL</span>
                 <h3 id="privacy-modal-title">Privacy Policy</h3>
                 <p>Effective Date: November 2026</p>
               </div>

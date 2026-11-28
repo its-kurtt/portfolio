@@ -11,6 +11,7 @@ I'm a 4th year Computer Science student who builds interactive React web interfa
 
 - **[The Known Galaxy](https://the-known-galaxy.vercel.app)** _(Web Design & Front-end)_ — Solo-built React & TypeScript interactive web archive reimagining the Jedi Order Notion wiki into a structured web hub.
 - **Shards of the Past** _(3D Game Art)_ — Commissioned hard-surface sci-fi props, armor sets, weapons, and character morphs modeled in Blender and optimized under 10K triangles for Roblox.
+- **Train Track** _(Web Design · Figma)_ — Technopreneurship UI proof of concept I designed in Figma for early train ticket booking, live GPS station tracking, crowd density, and Beep Card top-ups across LRT-1, LRT-2, and MRT.
 - **ACM Heartwired** _(3D & Animation)_ — Official 3D Valentine's event teaser for FEU Tech ACM modeled and animated from scratch in Blender (6.2K views).
 - **CS Night 2026** _(3D & Animation)_ — Official 3D promotional trailer for CS Night 2026 screened across campus (6.4K views).
 - **FIT ACM ’25–’26** _(3D & Animation)_ — 3D school year retrospective connecting each chapter event's main poster theme in Blender (4.3K views).
@@ -34,12 +35,3 @@ I'm a 4th year Computer Science student who builds interactive React web interfa
 - **Front-end:** React, TypeScript, JavaScript, HTML / CSS, Figma
 - **3D & Design:** Blender, Photoshop, Canva
 - **Other:** Python, Java, C++, Lua, Node.js, MongoDB
-
----
-
-## Running Locally
-
-```sh
-npm ci
-npm run dev
-```
