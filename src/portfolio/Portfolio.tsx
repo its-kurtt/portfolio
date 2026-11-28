@@ -515,6 +515,7 @@ const knownGalaxyDesktopShots: GalleryShot[] = [
 type ShardsBentoShot = GalleryShot & {
   bentoClass: string
   toneClass: 'tone-cover' | 'tone-black' | 'tone-clay'
+  objectPosition?: string
 }
 
 const shardsBentoShots: ShardsBentoShot[] = [
@@ -524,12 +525,14 @@ const shardsBentoShots: ShardsBentoShot[] = [
     alt: 'Rock-armored creature 3D model front render',
     bentoClass: 'span-6',
     toneClass: 'tone-black',
+    objectPosition: '50% 10%',
   },
   {
     src: '/work/shards/render-02.jpg',
     alt: 'Rock-armored creature 3D model back render',
     bentoClass: 'span-6',
     toneClass: 'tone-black',
+    objectPosition: '50% 10%',
   },
   // Band 2 & 3: Crimson-visor dark armor (renders + clay turnaround)
   {
@@ -537,18 +540,21 @@ const shardsBentoShots: ShardsBentoShot[] = [
     alt: 'Black crimson-visor armored character morph front render',
     bentoClass: 'span-6',
     toneClass: 'tone-cover',
+    objectPosition: '50% 14%',
   },
   {
     src: '/work/shards/render-04.jpg',
     alt: 'Black crimson-visor armored character morph back render with cloak',
     bentoClass: 'span-6',
     toneClass: 'tone-cover',
+    objectPosition: '50% 14%',
   },
   {
     src: '/work/shards/render-05.jpg',
     alt: 'Black crimson-visor armored character morph close-up bust render',
     bentoClass: 'span-6',
     toneClass: 'tone-cover',
+    objectPosition: '50% 18%',
   },
   {
     src: '/work/shards/render-06.jpg',
@@ -580,12 +586,14 @@ const shardsBentoShots: ShardsBentoShot[] = [
     alt: 'Gold-plated armored character morph front render',
     bentoClass: 'span-3',
     toneClass: 'tone-black',
+    objectPosition: '50% 15%',
   },
   {
     src: '/work/shards/render-11.jpg',
     alt: 'Gold-plated armored character morph back render',
     bentoClass: 'span-3',
     toneClass: 'tone-black',
+    objectPosition: '50% 15%',
   },
   // Band 5: Back harness clay, wall pod, and stacked green/orange energy rails
   {
@@ -643,12 +651,14 @@ const shardsBentoShots: ShardsBentoShot[] = [
     alt: 'White clay paneled sci-fi armor suit sculpt against black',
     bentoClass: 'span-3',
     toneClass: 'tone-black',
+    objectPosition: '50% 15%',
   },
   {
     src: '/work/shards/render-21.jpg',
     alt: 'White clay hooded visor helmet close-up sculpt against black',
     bentoClass: 'span-3',
     toneClass: 'tone-black',
+    objectPosition: '50% 15%',
   },
   // Band 8: Lightsabers + Forearm shield
   {
@@ -675,12 +685,14 @@ const shardsBentoShots: ShardsBentoShot[] = [
     alt: 'Ornate double-headed battleaxe 3D weapon render',
     bentoClass: 'span-2',
     toneClass: 'tone-clay',
+    objectPosition: '50% 8%',
   },
   {
     src: '/work/shards/render-26.jpg',
     alt: 'Gold-hilted fantasy broadsword 3D weapon render',
     bentoClass: 'span-2',
     toneClass: 'tone-clay',
+    objectPosition: '50% 82%',
   },
   {
     src: '/work/shards/render-27.jpg',
@@ -693,6 +705,7 @@ const shardsBentoShots: ShardsBentoShot[] = [
     alt: 'Standing sci-fi terminal kiosk clay sculpt',
     bentoClass: 'span-3',
     toneClass: 'tone-clay',
+    objectPosition: '50% 10%',
   },
   // Band 10: Wall console turnaround + Tactical datapad turnaround
   {
@@ -1110,6 +1123,13 @@ function ProjectShowcase({
                     key={shot.src}
                     type="button"
                     className={`shards-bento-tile ${shot.bentoClass} ${shot.toneClass}`}
+                    style={
+                      shot.objectPosition
+                        ? ({
+                            '--tile-pos': shot.objectPosition,
+                          } as React.CSSProperties)
+                        : undefined
+                    }
                     aria-label={`Expand ${shot.alt}`}
                     onClick={() =>
                       openLightbox(
