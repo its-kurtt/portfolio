@@ -66,11 +66,11 @@ export const works: Work[] = [
     accentColor: '#f5bd2a',
     secondaryTone: '#2b4b82',
     period: 'Aug 2026 — present',
-    role: 'Front-end developer & web designer',
+    role: 'Front-End Developer & Web Designer',
     leadMuted: 'A sprawling community wiki',
     leadStrong: 'rebuilt as an interactive web world.',
     summary:
-      'Solo-built React & TypeScript web archive reimagining the Jedi Order Notion wiki into a structured, immersive site for The Known Galaxy.',
+      'Solo-built React & TypeScript web archive reimagining the Jedi Order Notion wiki for The Known Galaxy.',
     description:
       'Designed and built solo in React and TypeScript as a structured, interactive web archive for the Jedi Order community in the Roblox game The Known Galaxy.',
     highlights: [
@@ -116,7 +116,7 @@ export const works: Work[] = [
     leadMuted: 'Hard-surface sci-fi props',
     leadStrong: 'modeled for real-time play.',
     summary:
-      'Optimized hard-surface sci-fi props, armor, weapons, and character morphs modeled in Blender for a Roblox game (kept under 10K triangles).',
+      'Hard-surface sci-fi props, armor, weapons, and morphs modeled in Blender for Roblox (under 10K tris).',
     description:
       'Commissioned directly by the game’s project head, I model hard-surface sci-fi props, armor sets, weapons, equipment pods, consoles, and character morphs in Blender for the Roblox game Shards of the Past.',
     highlights: [
@@ -133,6 +133,39 @@ export const works: Work[] = [
       'Multi-render showcase collage of original Blender renders from my supplied Shards of the Past modeling archive.',
   },
   {
+    slug: 'train-track',
+    title: 'Train Track',
+    subtitle: 'Train Commuter App UI Concept',
+    discipline: 'UI design · Figma',
+    disciplineTag: 'Web Design',
+    categories: ['web'],
+    ambientTone: '#1c2354',
+    accentColor: '#f5bd2a',
+    secondaryTone: '#4f5bd5',
+    period: '2024',
+    role: 'UI Designer',
+    leadMuted: 'A train commuter proof of concept',
+    leadStrong: 'designed to cut down station queues.',
+    summary:
+      'Figma mobile UI concept for LRT-1, LRT-2, and MRT — early ticketing, live GPS, and Beep top-ups.',
+    description:
+      'A school project proof of concept for our Technopreneurship subject aimed at making train commuting across LRT-1, LRT-2, and MRT faster and easier. I served as the team’s UI Designer in Figma, designing the mobile interface for early ticket booking, live GPS station tracking, crowd density monitoring, and Beep Card top-ups.',
+    highlights: [
+      'Early train ticket booking flow so commuters can reserve tickets ahead of time and avoid long station lines.',
+      'Live GPS station tracking showing your current station, travel time to the next stop, and estimated arrival time to your target destination.',
+      'Real-time station crowd density indicators across LRT-1, LRT-2, and MRT paired with rush-hour windows, station history, and nearby landmarks.',
+      'Integrated Beep Card top-up flow supporting GCash and Maya for quick balance reloads.',
+    ],
+    outcome: '7-screen Figma UI concept',
+    tools: ['Figma'],
+    thumbnail: '/work/train-track/thumbnail-collage.jpg',
+    image: '/work/train-track/thumbnail-collage.jpg',
+    imageAlt:
+      'Five mobile UI screens from Train Track designed in Figma showing Home, Ticket booking, Track Trains GPS map, Train Stations crowd density, and Beep Card Top Up.',
+    imageCaption:
+      'Mobile UI concept screens designed in Figma for our Technopreneurship train commuting proof of concept.',
+  },
+  {
     slug: 'acm-heartwired',
     title: 'ACM Heartwired',
     subtitle: 'Valentine’s Event Teaser',
@@ -147,7 +180,7 @@ export const works: Work[] = [
     leadMuted: '3D teaser trailer',
     leadStrong: 'for ACM’s Valentine’s event Heartwired.',
     summary:
-      '3D Valentine’s event teaser for FEU Tech ACM — modeled and animated from scratch in Blender (6.2K views).',
+      '3D Valentine’s event teaser for FEU Tech ACM — modeled and animated in Blender (6.2K views).',
     description:
       'Official 3D teaser trailer created for FEU Tech ACM Student Chapter’s Valentine’s event, Heartwired.',
     highlights: [
@@ -227,7 +260,7 @@ export const works: Work[] = [
     leadMuted: 'Looking back at FEU Tech ACM',
     leadStrong: 'across school year 2025–2026.',
     summary:
-      'School year 2025–2026 3D retrospective for FEU Tech ACM, with scenes adapted from each event’s main poster (4.3K views).',
+      '2025–2026 3D retrospective for FEU Tech ACM, with scenes adapted from each event poster (4.3K views).',
     description:
       'A 3D retrospective looking back at the FEU Tech ACM Student Chapter across school year 2025–2026.',
     highlights: [
@@ -268,7 +301,7 @@ export const works: Work[] = [
     leadMuted: '3D teaser production',
     leadStrong: 'for ACM’s flagship event, Revival X.',
     summary:
-      'Cinematic 3D teaser for FEU Tech ACM’s flagship event, Revival X — modeled and animated in Blender (2.2K views).',
+      'Cinematic 3D teaser for FEU Tech ACM’s flagship event, Revival X, animated in Blender (2.2K views).',
     description:
       'Official 3D teaser trailer for FEU Tech ACM’s flagship event, Revival X, adapted directly from the event’s main poster.',
     highlights: [
@@ -308,7 +341,7 @@ export const works: Work[] = [
     leadMuted: 'Looking back at 18 years of ACM',
     leadStrong: 'leading into Elysium Night.',
     summary:
-      '18th anniversary 3D retrospective for FEU Tech ACM leading into Elysium Night, animated in Blender (1.8K views).',
+      '18th anniversary 3D retrospective for FEU Tech ACM leading into Elysium Night (1.8K views).',
     description:
       'An 18th anniversary retrospective created for FEU Tech ACM leading into Elysium Night.',
     highlights: [
