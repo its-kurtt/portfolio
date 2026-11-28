@@ -33,6 +33,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://kurtdeslate.vercel.app/projects/train-track</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://kurtdeslate.vercel.app/projects/acm-heartwired</loc>
     <priority>0.8</priority>
   </url>
